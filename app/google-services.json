@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "549053648815",
+    "project_id": "swiftnewsapp-1e2ab",
+    "storage_bucket": "swiftnewsapp-1e2ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549053648815:android:37580444fdcf2782ff695a",
+        "android_client_info": {
+          "package_name": "com.example.swiftnewsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiO8uvyTsPbAo1lMUbbYxfyRbnj1Qo20g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
