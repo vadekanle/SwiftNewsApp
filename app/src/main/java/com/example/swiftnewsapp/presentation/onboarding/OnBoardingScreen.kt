@@ -20,8 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.swiftnewsapp.presentation.onboarding.Dimens.MediumPadding2
 import com.example.swiftnewsapp.presentation.onboarding.Dimens.PageIndicatorWidth
-import com.example.swiftnewsapp.presentation.onboarding.common.NewsButton
-import com.example.swiftnewsapp.presentation.onboarding.common.NewsTextButton
+import com.example.swiftnewsapp.presentation.common.NewsButton
+import com.example.swiftnewsapp.presentation.common.NewsTextButton
 import com.example.swiftnewsapp.presentation.onboarding.components.PageIndicator
 import com.example.swiftnewsapp.presentation.onboarding.components.onBoardingPage
 import kotlinx.coroutines.launch
@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnBoardingScreen(
-//    event: (OnBoardingEvent) -> Unit
+    event:  (OnBoardingEvent) -> Unit
 ){
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState= rememberPagerState(initialPage = 0) {
@@ -41,7 +41,7 @@ fun OnBoardingScreen(
                 when(pagerState.currentPage){
                     0 -> listOf("","Next")
                     1 -> listOf("Back","Next")
-                    2 -> listOf("Back","Get Start  ed")
+                    2 -> listOf("Back","Get Started")
                     else -> listOf("","")
 
                 }
@@ -89,7 +89,7 @@ fun OnBoardingScreen(
                     onClick = {
                         scope.launch {
                             if (pagerState.currentPage == 2) {
-//                                event(OnBoardingEvent.SaveAppEntry)
+                                event(OnBoardingEvent.SaveAppEntry)
                             } else {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1
