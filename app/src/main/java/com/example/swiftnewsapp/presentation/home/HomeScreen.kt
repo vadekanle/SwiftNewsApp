@@ -54,7 +54,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate:(String) -> Unit){
         .statusBarsPadding()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_logo),
+            painter = painterResource(id = R.drawable.playstore),
             contentDescription = null,
             modifier = Modifier
                 .width(150.dp)
