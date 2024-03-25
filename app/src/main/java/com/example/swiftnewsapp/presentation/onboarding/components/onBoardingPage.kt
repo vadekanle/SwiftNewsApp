@@ -1,7 +1,5 @@
 package com.example.swiftnewsapp.presentation.onboarding.components
 
-import android.content.res.Configuration
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,9 +21,10 @@ import com.example.swiftnewsapp.presentation.onboarding.Dimens.MediumPadding1
 import com.example.swiftnewsapp.presentation.onboarding.Dimens.MediumPadding2
 import com.example.swiftnewsapp.presentation.onboarding.Page
 import com.example.swiftnewsapp.presentation.onboarding.pages
+import com.example.swiftnewsapp.ui.theme.SwiftNewsAppTheme
 
 @Composable
-fun onBoardingPage(
+fun OnBoardingPage(
     modifier: Modifier = Modifier,
     page: Page
 ){
@@ -55,13 +54,13 @@ fun onBoardingPage(
     }
 }
 
-//@Preview(showBackground = true)
+@Preview(showBackground = true)
 //@Preview(uiMode = UI_MODE_NIGHT_YES,showBackground = true)
-//@Composable
-//fun OnBoardingPagePreview(){
-//    SwiftAppsTheme {
-//        onBoardingPage(
-//            page = pages[0]
-//        )
-//    }
-//}
+@Composable
+fun OnBoardingPagePreview(){
+    SwiftNewsAppTheme {
+        OnBoardingPage(
+            page = pages[0]
+        )
+    }
+}

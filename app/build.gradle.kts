@@ -63,6 +63,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("androidx.paging:paging-common-android:3.3.0-alpha05")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -72,8 +73,14 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    //Splash Api
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+
     //Compose Navigation
     implementation ("androidx.navigation:navigation-compose:2.7.7")
+//    def nav_version = ("2.6.0")
+//    implementation ("androidx.navigation:navigation-compose:$nav_version")
+
 
 //    //Dagger Hilt
     implementation ("com.google.dagger:hilt-android:2.51")
@@ -84,6 +91,7 @@ dependencies {
 
     //Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     //Kotlinx Serialization
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
@@ -101,5 +109,9 @@ dependencies {
     //Accompanist
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
 
+    //Paging 3
+    val paging_version = ("3.2.1")
+    implementation ("androidx.paging:paging-runtime:$paging_version")
+    implementation ("androidx.paging:paging-compose:3.2.1")
 
 }

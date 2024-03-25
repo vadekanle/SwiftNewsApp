@@ -1,5 +1,6 @@
 package com.example.swiftnewsapp.presentation.onboarding
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,7 +24,7 @@ import com.example.swiftnewsapp.presentation.onboarding.Dimens.PageIndicatorWidt
 import com.example.swiftnewsapp.presentation.common.NewsButton
 import com.example.swiftnewsapp.presentation.common.NewsTextButton
 import com.example.swiftnewsapp.presentation.onboarding.components.PageIndicator
-import com.example.swiftnewsapp.presentation.onboarding.components.onBoardingPage
+import com.example.swiftnewsapp.presentation.onboarding.components.OnBoardingPage
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -50,7 +51,7 @@ fun OnBoardingScreen(
         }
 
         HorizontalPager(state = pagerState) {index ->
-            onBoardingPage(page = pages[index])
+            OnBoardingPage(page = pages[index])
 
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -88,9 +89,12 @@ fun OnBoardingScreen(
                     text = buttonState.value[1],
                     onClick = {
                         scope.launch {
+                            Log.d("test", pagerState.currentPage.toString())
                             if (pagerState.currentPage == 2) {
                                 event(OnBoardingEvent.SaveAppEntry)
                             } else {
+                                Log.d("test3", pagerState.currentPage.toString())
+
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1
                                 )

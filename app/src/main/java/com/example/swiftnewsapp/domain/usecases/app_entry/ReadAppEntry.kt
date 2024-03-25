@@ -1,4 +1,4 @@
-package com.example.swiftnewsapp.domain.usecases
+package com.example.swiftnewsapp.domain.usecases.app_entry
 
 import com.example.swiftnewsapp.domain.manger.LocalUserManger
 import kotlinx.coroutines.flow.Flow
