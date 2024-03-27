@@ -3,6 +3,7 @@ package com.example.swiftnewsapp.data.remote.datatranferobject
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.swiftnewsapp.domain.model.Article
+import com.example.swiftnewsapp.util.Constants.API_KEY
 
 class NewsPagingSource(
     private val newsApi: NewsApi,
@@ -14,7 +15,7 @@ class NewsPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val page = params.key ?: 1
         return try {
-            val newsResponse = newsApi.getNews(sources = sources, page = page)
+            val newsResponse = newsApi.getNews(page, sources)
             totalNewsCount += newsResponse.articles.size
             val article = newsResponse.articles.distinctBy { it.title  }  //distinctBy is used for removing duplicate items from list and filter the articles
             LoadResult.Page(
