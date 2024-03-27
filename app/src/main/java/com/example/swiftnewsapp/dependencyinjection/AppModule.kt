@@ -11,6 +11,7 @@ import com.example.swiftnewsapp.domain.usecases.app_entry.ReadAppEntry
 import com.example.swiftnewsapp.domain.usecases.app_entry.SaveAppEntry
 import com.example.swiftnewsapp.domain.usecases.news.Getnews
 import com.example.swiftnewsapp.domain.usecases.news.NewsUseCases
+import com.example.swiftnewsapp.domain.usecases.news.SearchNews
 import com.example.swiftnewsapp.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -66,7 +67,8 @@ object AppModule {
         newsRepository: NewsRepository
     ): NewsUseCases{
         return NewsUseCases(
-            getnews = Getnews(newsRepository)
+            getnews = Getnews(newsRepository),
+            searchNews = SearchNews(newsRepository)
         )
     }
 }
