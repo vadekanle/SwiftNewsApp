@@ -49,7 +49,6 @@ fun NavGraph(
         ){
             composable(route=Route.NewsNavigatorScreen.route){
                val viewModel: BookmarkViewModel = hiltViewModel()
-//                SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
                   BookmarkScreen(state = viewModel.state.value, navigate = {})
 
             }
