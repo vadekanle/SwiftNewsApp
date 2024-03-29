@@ -1,7 +1,11 @@
 package com.example.swiftnewsapp.domain.usecases.news
 
 data class NewsUseCases(
-    val getnews: Getnews,
-    val searchNews: SearchNews
+    val getNews: Getnews,
+    val searchNews: SearchNews,
+    val upsertArticle: UpsertArticle,
+    val deleteArticle: DeleteArticle,
+    val selectArticles: SelectArticles
+
 
 )

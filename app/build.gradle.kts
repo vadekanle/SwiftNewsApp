@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.swiftnewsapp"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -54,9 +54,9 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation("androidx.activity:activity-compose:1.7.0")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -78,8 +78,6 @@ dependencies {
 
     //Compose Navigation
     implementation ("androidx.navigation:navigation-compose:2.7.7")
-//    def nav_version = ("2.6.0")
-//    implementation ("androidx.navigation:navigation-compose:$nav_version")
 
 
 //    //Dagger Hilt
@@ -113,5 +111,19 @@ dependencies {
     val paging_version = ("3.2.1")
     implementation ("androidx.paging:paging-runtime:$paging_version")
     implementation ("androidx.paging:paging-compose:3.2.1")
+
+    //Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-common:2.6.1")
+//    val room_version = "androidx.room:room-common:2.6.1"
+//    implementation ("androidx.room:room-runtime:$room_version")
+//    kapt ("androidx.room:room-compiler:$room_version")
+//    implementation ("androidx.room:room-ktx:2.6.1")
+
+    //Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
 
 }
