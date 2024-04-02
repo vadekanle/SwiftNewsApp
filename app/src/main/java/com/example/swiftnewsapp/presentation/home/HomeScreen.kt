@@ -2,6 +2,7 @@ package com.example.swiftnewsapp.presentation.home
 
 import android.content.Intent
 import android.media.Image
+import android.util.Log
 import android.widget.Space
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -36,7 +37,11 @@ import com.example.swiftnewsapp.ui.theme.SwiftNewsAppTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigate:(String) -> Unit){
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    navigateToSearch:() -> Unit,
+    navigateToDetails:(Article)-> Unit
+){
     val titles by remember {
         derivedStateOf {
             if (articles.itemCount > 10){
@@ -71,7 +76,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate:(String) -> Unit){
             readOnly = true,
             onValueChange = {},
             onClick = {
-                  navigate(Route.SearchScreen.route)
+                  navigateToSearch
             },
             onSearch = {}
         )
@@ -93,7 +98,10 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate:(String) -> Unit){
         ArticlesList(
             articles = articles,
             onClick = {
-                navigate(Route.DetailsScreen.route)
+
+                Log.d("test1",  it.title.toString())
+                navigateToDetails(it)
+                Log.d("test2", "not working")
             }
         )
 

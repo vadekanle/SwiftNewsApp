@@ -2,6 +2,7 @@ package com.example.swiftnewsapp.presentation.details.components
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -35,6 +36,8 @@ fun DetailsScreen(
     navigateUp: () -> Unit
 ){
 
+
+    Log.d("test3", "details screen")
     val context = LocalContext.current
 
     Column(
@@ -61,7 +64,7 @@ fun DetailsScreen(
                 }
             },
             onBookmarkClick = {
-                event(DetailsEvent.SaveArticles)},
+                event(DetailsEvent.UpsertDeleteArticle(article)) },
             onBackClick = navigateUp
         )
 
@@ -83,16 +86,16 @@ fun DetailsScreen(
                         .clip(MaterialTheme.shapes.medium),
                     contentScale = ContentScale.Crop
                 )
-                
+
                 Spacer(modifier = Modifier.height(MediumPadding1))
-                
+
                 Text(
-                    text = article.title, 
-                    style = MaterialTheme.typography.displaySmall, 
+                    text = article.title,
+                    style = MaterialTheme.typography.displaySmall,
                     color = colorResource(
                          id = R.color.text_title
                     )
-                
+
                 )
 
                 Text(
@@ -103,7 +106,7 @@ fun DetailsScreen(
                     )
 
                 )
-                    
+
             }
         }
     }

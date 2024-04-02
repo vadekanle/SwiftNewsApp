@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import com.example.swiftnewsapp.R
+import com.example.swiftnewsapp.domain.model.Article
 import com.example.swiftnewsapp.presentation.common.ArticlesList
 import com.example.swiftnewsapp.presentation.nvgraph.Route
 import com.example.swiftnewsapp.presentation.onboarding.Dimens.MediumPadding1
@@ -20,7 +21,7 @@ import com.example.swiftnewsapp.presentation.onboarding.Dimens.MediumPadding1
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate:(String) -> Unit
+    navigateToDetails:(Article) -> Unit
 ){
     Column(
         modifier = Modifier
@@ -37,6 +38,6 @@ fun BookmarkScreen(
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 
-        ArticlesList(articles = state.articles, onClick = {navigate(Route.DetailsScreen.route)})
+        ArticlesList(articles = state.articles, onClick = {navigateToDetails(it)})
     }
 }
