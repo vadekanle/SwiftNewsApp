@@ -21,6 +21,9 @@ fun ArticlesList(
     articles: List<Article>,
     onClick:(Article) -> Unit
 ){
+    if (articles.isEmpty()){
+        EmptyScreen()
+    }
         LazyColumn(
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(MediumPadding1),
@@ -28,7 +31,7 @@ fun ArticlesList(
         ){
             items(count = articles.size){
                 val article = articles[it]
-                    ArticleCard(article = article, onClick = {onClick(article) })
+                ArticleCard(article = article, onClick = {onClick(article) })
 
             }
         }
@@ -78,10 +81,19 @@ fun handlePagingResult(
             ShimmerEffect()
             false
         }
+
         error!= null ->{
+            EmptyScreen(
+                error = error
+            )
+            false
+        }
+
+        articles.itemCount == 0 -> {
             EmptyScreen()
             false
         }
+
         else ->{
             true
         }
