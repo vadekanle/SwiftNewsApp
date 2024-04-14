@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.swiftnewsapp.app.SwiftNewsApp
 import com.example.swiftnewsapp.data.local.NewsDao
 import com.example.swiftnewsapp.domain.model.Article
 import com.example.swiftnewsapp.domain.model.Source
@@ -38,6 +39,7 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
+            SwiftNewsApp()
             SwiftNewsAppTheme {
 
                 val isSystemInDarkMode = isSystemInDarkTheme()
@@ -50,7 +52,9 @@ class MainActivity : ComponentActivity() {
                     )
                 }
 
-                Box(modifier = Modifier.background(color = Color.White).fillMaxHeight()){
+                Box(modifier = Modifier
+                    .background(color = Color.White)
+                    .fillMaxHeight()){
                     val startDestination = viewModel.startDestination
                     NavGraph(startDestination = startDestination)
                 }
