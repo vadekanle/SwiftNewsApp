@@ -1,19 +1,29 @@
 package com.example.swiftnewsapp.authentication
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.swiftnewsapp.R
 import com.example.swiftnewsapp.authentication.components.ButtonComponent
 import com.example.swiftnewsapp.authentication.components.CheckboxComponent
@@ -23,9 +33,12 @@ import com.example.swiftnewsapp.authentication.components.HeadingTextComponent
 import com.example.swiftnewsapp.authentication.components.NormalTextComponent
 //import com.example.swiftnewsapp.components.PasswordTextFieldComponent
 import com.example.swiftnewsapp.authentication.components.TextFieldComponent
+import com.example.swiftnewsapp.presentation.nvgraph.Route
 
 @Composable
-fun SignUpScreen (){
+fun SignUpScreen (
+    navController: NavController
+){
 
     Surface (
         color = Color.White,
@@ -61,15 +74,32 @@ fun SignUpScreen (){
 
             Spacer(modifier = Modifier.height(80.dp))
 
-            ButtonComponent(value = stringResource(id = R.string.register))
+            ButtonComponent(value = stringResource(id = R.string.register),
+                onClick = {}
+                )
 
             Spacer(modifier = Modifier.height(20.dp))
 
             DividerTextComponent()
 
-            ClickableLoginTextComponent(tryToLogin = true, onTextSelected = {
-
-            })
+            Text(
+                text = "Already have an account? Login",
+                style = TextStyle(
+                    fontSize = 21.sp,
+                    fontWeight = FontWeight.Normal,
+                    fontStyle = FontStyle.Normal,
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable
+                {
+                    navController.navigate(Route.LoginScreen.route)
+                })
+//
+//            ClickableLoginTextComponent(tryToLogin = true, onTextSelected = {
+//
+//            })
 
 
 
@@ -84,5 +114,7 @@ fun SignUpScreen (){
 @Preview
 @Composable
 fun DefaultPreviewOfSignUpScreen(){
-    SignUpScreen()
+    SignUpScreen(
+        rememberNavController()
+    )
 }

@@ -49,7 +49,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.example.swiftnewsapp.R
+import com.example.swiftnewsapp.presentation.nvgraph.Route
 import com.example.swiftnewsapp.ui.theme.GrayColor
 import com.example.swiftnewsapp.ui.theme.Pink80
 import com.example.swiftnewsapp.ui.theme.Primary
@@ -230,8 +232,8 @@ fun ClickableTextComponent(value: String){
 }
 
 @Composable
-fun ButtonComponent(value: String){
-    Button(onClick = { /*TODO*/ }, modifier = Modifier
+fun ButtonComponent(value: String, onClick : () -> Unit){
+    Button(onClick = onClick, modifier = Modifier
         .fillMaxWidth()
         .heightIn(48.dp),
         contentPadding = PaddingValues(),
@@ -318,7 +320,6 @@ fun ClickableLoginTextComponent(tryToLogin: Boolean = true,onTextSelected: (Stri
                 }
 
             }
-
 
     })
 }

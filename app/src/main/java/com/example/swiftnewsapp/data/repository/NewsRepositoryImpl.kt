@@ -10,7 +10,6 @@ import com.example.swiftnewsapp.data.remote.datatranferobject.SearchNewsPagingSo
 import com.example.swiftnewsapp.domain.model.Article
 import com.example.swiftnewsapp.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onEach
 
 class NewsRepositoryImpl(
     private val newsApi: NewsApi,

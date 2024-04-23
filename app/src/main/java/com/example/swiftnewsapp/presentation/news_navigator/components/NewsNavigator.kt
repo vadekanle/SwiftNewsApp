@@ -20,6 +20,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.swiftnewsapp.R
+import com.example.swiftnewsapp.authentication.SignUpScreen
 import com.example.swiftnewsapp.domain.model.Article
 import com.example.swiftnewsapp.presentation.bookmark.BookmarkScreen
 import com.example.swiftnewsapp.presentation.bookmark.BookmarkViewModel
@@ -33,7 +34,9 @@ import com.example.swiftnewsapp.presentation.search.SearchScreen
 import com.example.swiftnewsapp.presentation.search.SearchViewModel
 
 @Composable
-fun NewsNavigator(){
+fun NewsNavigator(
+    navController: NavController
+){
 
     val bottomNavigationItem  = remember {
         listOf(
@@ -171,6 +174,10 @@ fun NewsNavigator(){
 
                 })
             }
+
+//            composable(route = Route.SignUpScreen.route){
+//                SignUpScreen()
+//            }
         }
     }
 

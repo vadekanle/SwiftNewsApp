@@ -8,28 +8,24 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.swiftnewsapp.app.SwiftNewsApp
-import com.example.swiftnewsapp.data.local.NewsDao
-import com.example.swiftnewsapp.domain.model.Article
-import com.example.swiftnewsapp.domain.model.Source
-import com.example.swiftnewsapp.presentation.nvgraph.NavGraph
+import com.example.swiftnewsapp.presentation.nvgraph.SetNavGraph
 import com.example.swiftnewsapp.ui.theme.SwiftNewsAppTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     val viewModel by viewModels<MainViewModel>()
+    private lateinit var navController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window,false)
@@ -52,11 +48,12 @@ class MainActivity : ComponentActivity() {
                     )
                 }
 
+                navController = rememberNavController()
                 Box(modifier = Modifier
                     .background(color = Color.White)
-                    .fillMaxHeight()){
-                    val startDestination = viewModel.startDestination
-                    NavGraph(startDestination = startDestination)
+                    .fillMaxHeight())
+                {
+                    SetNavGraph(navController)
                 }
 
             }

@@ -1,46 +1,49 @@
 package com.example.swiftnewsapp.presentation.nvgraph
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
-import com.example.swiftnewsapp.presentation.bookmark.BookmarkScreen
-import com.example.swiftnewsapp.presentation.bookmark.BookmarkViewModel
-import com.example.swiftnewsapp.presentation.news_navigator.components.NewsNavigator
-import com.example.swiftnewsapp.presentation.onboarding.OnBoardingScreen
-import com.example.swiftnewsapp.presentation.onboarding.OnBoardingViewModel
+import com.example.swiftnewsapp.presentation.nvgraph.Route.NewsNavigation.AUTH_ROUTE
+import com.example.swiftnewsapp.presentation.nvgraph.Route.NewsNavigation.NEWS_NAVIGATION
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun NavGraph(
-    startDestination: String
+fun SetNavGraph(
+    navController: NavHostController,
 ) {
-    val navController = rememberNavController()
-    
-    NavHost(navController = navController, startDestination = startDestination){
-        navigation(
-            route = Route.AppStartNavigation.route,
-            startDestination = Route.OnBoardingScreen.route
-        ){
-            composable(
-                route = Route.OnBoardingScreen.route
-            ){
-                val viewModel: OnBoardingViewModel =  hiltViewModel()
-                OnBoardingScreen(
-                    event = viewModel::onEvent
-                )
-            }
-        }
-        
-        navigation(
-            route = Route.NewsNavigation.route,
-            startDestination = Route.NewsNavigatorScreen.route
-        ){
-            composable(route=Route.NewsNavigatorScreen.route){
-                NewsNavigator()
 
-            }
-        }
+    // User
+    val auth = FirebaseAuth.getInstance()
+
+//        auth
+//        .signInWithEmailAndPassword("fsdmfkdf", ";sdfjdfsd")
+//        .addOnCompleteListener {
+//            if(it.isSuccessful){
+//                //log
+//            }
+//            else{
+//                //
+//            }
+//        }
+
+    var startingPoint= AUTH_ROUTE
+    if(null != auth.currentUser)
+    {
+        startingPoint= NEWS_NAVIGATION
+    }
+
+    NavHost(
+        navController = navController,
+        startDestination = startingPoint
+    ) {
+
+        // Auth graph - For login and sign up
+        authNavGraph(navController)
+
+        // News Navigation graph | Home or main application
+        newsNavigationNavGraph(navController)
+
+        // App start graph - Bottom bar navigation
+        appStartNavGraph(navController)
     }
 }
