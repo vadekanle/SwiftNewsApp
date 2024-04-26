@@ -3,6 +3,7 @@ package com.example.swiftnewsapp.authentication.components
 import android.util.Log
 import android.view.textclassifier.TextSelection
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -91,11 +92,16 @@ fun HeadingTextComponent(value:String){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
- fun TextFieldComponent(labelValue: String, painterResource: Painter){
+ fun TextFieldComponent(
+    labelValue: String,
+    painterResource: Painter,
+    value: String = "",
+    onChange: (String) -> Unit = {},
+    inputType: VisualTransformation = VisualTransformation.None,
+    iconOnClick: () -> Unit = {},
+    ){
 
-    val textValue = remember {
-        mutableStateOf("")
-    }
+
 
     OutlinedTextField(
         modifier = Modifier
@@ -106,76 +112,20 @@ fun HeadingTextComponent(value:String){
             focusedBorderColor = Primary,
             focusedLabelColor = Primary,
             cursorColor = Primary,
-//            backgroundColor = BackgroundColor
+
 
         ),
         keyboardOptions = KeyboardOptions.Default,
-        value = textValue.value,
-        onValueChange = {
-            textValue.value = it
-        },
+        value = value,
+        onValueChange = onChange,
         leadingIcon = {
-            Icon(painter = painterResource, contentDescription =" " )
-        }
+            Icon(painter = painterResource, contentDescription =" ",
+                modifier = Modifier.clickable(onClick = iconOnClick))
+        },
+        visualTransformation = inputType
     )
 }
 
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun PasswordTextFieldComponent(labelValue: String, painterResource: Painter){
-//
-//    val password = remember {
-//        mutableStateOf("")
-//    }
-//
-//    val passwordVisible = remember {
-//        mutableStateOf(false)
-//    }
-//
-//    OutlinedTextField(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .clip(componentShapes.small),
-//        label = {Text(text = labelValue) },
-//        colors = TextFieldDefaults.outlinedTextFieldColors(
-//            focusedBorderColor = Primary,
-//            focusedLabelColor = Primary,
-//            cursorColor = Primary,
-////            backgroundColor = BackgroundColor
-//
-//        ),
-//        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-//        value = password.value,
-//        onValueChange = {
-//            password.value = it
-//        },
-//        leadingIcon = {
-//            Icon(painter = painterResource, contentDescription =" " )
-//        },
-//        trailingIcon = {
-//
-////            val iconImage = if (passwordVisible.value){
-////                Icons.Filled.Visibility
-////            } else {
-////                Icons.Filled.VisibilityOff
-////            }
-//
-//            var description = if (passwordVisible.value){
-//                stringResource(id = R.string.hide_password)
-//            } else{
-//                stringResource(id = R.string.show_password)
-//            }
-//
-//            IconButton(onClick = {passwordVisible.value = !passwordVisible.value }) {
-////                Icon(imageVector = iconImage, contentDescription = description)
-//            }
-//
-//
-//        },
-//        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation()
-//
-//    )
-//}
 
 @Composable
 fun CheckboxComponent(value: String){

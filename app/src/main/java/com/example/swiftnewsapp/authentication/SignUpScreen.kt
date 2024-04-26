@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -22,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.swiftnewsapp.R
@@ -37,8 +40,27 @@ import com.example.swiftnewsapp.presentation.nvgraph.Route
 
 @Composable
 fun SignUpScreen (
-    navController: NavController
+    navController: NavController,
+    viewModel: loginViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ){
+
+
+    val firstName = remember {
+        mutableStateOf("")
+    }
+
+    val lastName = remember {
+        mutableStateOf("")
+    }
+
+    val email = remember {
+        mutableStateOf("")
+    }
+
+    val password = remember {
+        mutableStateOf("")
+    }
+
 
     Surface (
         color = Color.White,
@@ -54,19 +76,27 @@ fun SignUpScreen (
             Spacer(modifier = Modifier.height(20.dp))
             TextFieldComponent(
                 labelValue = stringResource(id = R.string.first_name),
-                painterResource(id = R.drawable.ic_profile)
+                painterResource(id = R.drawable.ic_profile),
+                value = firstName.value,
+                onChange = {firstName.value = it}
             )
             TextFieldComponent(
                 labelValue = stringResource(id = R.string.last_name),
-                painterResource = painterResource(id = R.drawable.ic_profile)
+                painterResource = painterResource(id = R.drawable.ic_profile),
+                value = lastName.value,
+                onChange = {lastName.value = it}
             )
             TextFieldComponent(
                 labelValue = stringResource(id = R.string.email),
-                painterResource = painterResource(id = R.drawable.ic_email)
+                painterResource = painterResource(id = R.drawable.ic_email),
+                value = email.value,
+                onChange = {email.value = it}
             )
             TextFieldComponent(
                 labelValue = stringResource(id = R.string.password),
-                painterResource = painterResource(id = R.drawable.ic_lock)
+                painterResource = painterResource(id = R.drawable.ic_lock),
+                value = password.value,
+                onChange = {password.value = it}
 
             )
 
@@ -75,7 +105,11 @@ fun SignUpScreen (
             Spacer(modifier = Modifier.height(80.dp))
 
             ButtonComponent(value = stringResource(id = R.string.register),
-                onClick = {}
+                onClick = {
+                    viewModel.createUserWithEmailAndPassword(email.value, password.value) {
+                        navController.navigate(Route.NewsNavigatorScreen.route)
+                    }
+                }
                 )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -96,11 +130,6 @@ fun SignUpScreen (
                 {
                     navController.navigate(Route.LoginScreen.route)
                 })
-//
-//            ClickableLoginTextComponent(tryToLogin = true, onTextSelected = {
-//
-//            })
-
 
 
 
@@ -111,10 +140,10 @@ fun SignUpScreen (
 }
 
 
-@Preview
-@Composable
-fun DefaultPreviewOfSignUpScreen(){
-    SignUpScreen(
-        rememberNavController()
-    )
-}
+//@Preview
+//@Composable
+//fun DefaultPreviewOfSignUpScreen(){
+//    SignUpScreen(
+//        rememberNavController()
+//    )
+//}
