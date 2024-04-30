@@ -1,5 +1,6 @@
 package com.example.swiftnewsapp.authentication
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -40,6 +41,7 @@ import com.example.swiftnewsapp.authentication.components.TextFieldComponent
 import com.example.swiftnewsapp.authentication.components.UnderlinedTextComponent
 import com.example.swiftnewsapp.presentation.nvgraph.Route
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun LoginScreen(navController: NavController,
                 viewModel: loginViewModel = androidx.lifecycle.viewmodel.compose.viewModel()

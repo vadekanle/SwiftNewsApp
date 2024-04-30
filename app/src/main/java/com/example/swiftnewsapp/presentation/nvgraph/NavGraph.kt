@@ -15,16 +15,7 @@ fun SetNavGraph(
     // User
     val auth = FirebaseAuth.getInstance()
 
-//        auth
-//        .signInWithEmailAndPassword("fsdmfkdf", ";sdfjdfsd")
-//        .addOnCompleteListener {
-//            if(it.isSuccessful){
-//                //log
-//            }
-//            else{
-//                //
-//            }
-//        }
+
 
     var startingPoint= AUTH_ROUTE
     if(null != auth.currentUser)

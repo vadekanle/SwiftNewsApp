@@ -14,10 +14,9 @@ import kotlinx.coroutines.launch
 
 class loginViewModel : ViewModel() {
 
-    //    val loadingState = MutableStateFlow(LoadingState.IDLE)
+
     private val auth: FirebaseAuth = Firebase.auth
-//    private val _loading = MutableLiveData(false)
-//    val loading: LiveData<Boolean> = _loading
+
 
     var isLoading by mutableStateOf(false)
 
@@ -26,7 +25,7 @@ class loginViewModel : ViewModel() {
 
     fun signInWithEmailAndPassword(email: String, password: String, home: () -> Unit) =
         viewModelScope.launch {
-//_loading.value = true
+
             isLoading = true
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
@@ -41,8 +40,7 @@ class loginViewModel : ViewModel() {
                 }
         }
 
-//    name: String,
-//    phoneNumber: String,
+
     fun createUserWithEmailAndPassword(
         email: String,
         password: String,
@@ -55,7 +53,6 @@ class loginViewModel : ViewModel() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-//                        createUser(name, phoneNumber, email)
                         home()
 
                         Log.d("create suc", "${task.result}")
