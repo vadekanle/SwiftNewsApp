@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.runtime.SideEffect
@@ -24,13 +23,14 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    val viewModel by viewModels<MainViewModel>()
-    private lateinit var navController: NavHostController
+    val viewModel by viewModels<MainViewModel>() // Initialize ViewModel using Hilt
+    private lateinit var navController: NavHostController // Initialize NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Set system window attributes
         WindowCompat.setDecorFitsSystemWindows(window,false)
 
-
+        // Install splash screen and set its keep on screen condition
         installSplashScreen().setKeepOnScreenCondition() { false }
 
 
@@ -38,17 +38,19 @@ class MainActivity : ComponentActivity() {
             SwiftNewsApp()
             SwiftNewsAppTheme {
 
-                val isSystemInDarkMode = isSystemInDarkTheme()
+
                 val systemController = rememberSystemUiController()
 
                 SideEffect {
                     systemController.setSystemBarsColor(
                         color = Color.Transparent,
-                        darkIcons = !isSystemInDarkMode
+
                     )
                 }
-
+                // Initialize NavHostController
                 navController = rememberNavController()
+
+                // Set up the UI with NavHost and specified navigation graph
                 Box(modifier = Modifier
                     .background(color = Color.White)
                     .fillMaxHeight())

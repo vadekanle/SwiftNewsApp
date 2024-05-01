@@ -19,10 +19,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.example.swiftnewsapp.presentation.onboarding.Dimens.MediumPadding2
 import com.example.swiftnewsapp.presentation.onboarding.Dimens.PageIndicatorWidth
 import com.example.swiftnewsapp.presentation.common.NewsButton
 import com.example.swiftnewsapp.presentation.common.NewsTextButton
+import com.example.swiftnewsapp.presentation.nvgraph.Route
 import com.example.swiftnewsapp.presentation.onboarding.components.PageIndicator
 import com.example.swiftnewsapp.presentation.onboarding.components.OnBoardingPage
 import kotlinx.coroutines.launch
@@ -30,7 +32,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnBoardingScreen(
-    event:  (OnBoardingEvent) -> Unit
+    event:  (OnBoardingEvent) -> Unit, navController: NavController
 ){
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState= rememberPagerState(initialPage = 0) {
@@ -91,6 +93,8 @@ fun OnBoardingScreen(
                         scope.launch {
                             if (pagerState.currentPage == 2) {
                                 event(OnBoardingEvent.SaveAppEntry)
+                                // navigate to intended destination
+                                navController.navigate(Route.NewsNavigatorScreen.route)
                             } else {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1

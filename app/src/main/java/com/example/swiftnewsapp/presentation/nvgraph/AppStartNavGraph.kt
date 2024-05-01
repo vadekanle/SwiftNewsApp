@@ -24,7 +24,7 @@ fun NavGraphBuilder.appStartNavGraph(
         ){
             val viewModel: OnBoardingViewModel =  hiltViewModel()
             OnBoardingScreen(
-                event = viewModel::onEvent
+                event = viewModel::onEvent, navController
             )
         }
 

@@ -107,7 +107,7 @@ fun SignUpScreen (
             ButtonComponent(value = stringResource(id = R.string.register),
                 onClick = {
                     viewModel.createUserWithEmailAndPassword(email.value, password.value) {
-                        navController.navigate(Route.NewsNavigatorScreen.route)
+                        navController.navigate(Route.OnBoardingScreen.route)
                     }
                 }
                 )
